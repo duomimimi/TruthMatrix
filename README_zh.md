@@ -1,4 +1,8 @@
 # TruthMatrix
+[![verification](https://img.shields.io/badge/verification-00C853?style=flat-square)](#)
+[![hallucination](https://img.shields.io/badge/hallucination-FF5252?style=flat-square)](#)
+[![MIT协议](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![版本1.0](https://img.shields.io/badge/version-1.0.0-orange?style=flat-square)](#)
 
 **让AI输出真实性可衡量、可验证。**
 
