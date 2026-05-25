@@ -1,150 +1,115 @@
 # TruthMatrix
 
-**Know when your AI is lying to you.**
+**让AI输出真实性可衡量、可验证。**
 
-*Verify first. Trust second.*
+*验证先行，信任其次。*
 
 ---
 
-## The Hook
+你曾经相信过AI的一个"事实"，后来发现它是错的。
+
+可能是AI编造的引用。可能是一个看起来合理但完全错误的数字。可能是模型在自信地撒谎，而你毫无察觉。
+
+这是AI的幻觉问题。而大多数系统的做法是：先相信，再说。
+
+我们不一样。
+
+**TruthMatrix 的核心信念：验证不是可选项，是基础。**
+
+---
+
+## 核心洞察
+
+80%的AI"错误"其实可以在到达用户之前被捕获。
+
+问题不在于AI会犯错——问题在于系统不会验证。
+
+TruthMatrix 引入4阶段可信度过滤器，在源头拦截幻觉。
+
+---
+
+## 工作原理
 
 ```
-"How do you know when an AI is lying to you?
- Most systems trust first. We verify first."
+[AI输出] → [事实核查] → [逻辑审查] → [来源验证] → [深度分析] → [可信输出]
+              ↓             ↓             ↓              ↓
+           标记为假      标记无效      标记缺失       标记肤浅
 ```
 
-**The Problem:**
+**4个阶段：**
 
-AI hallucination is real. Models can:
-- Confidently state false information
-- Create fake citations
-- Double down on incorrect reasoning
-- Generate seemingly credible but completely fabricated data
+**阶段1：事实核查**
+- 识别输出中的事实声明
+- 与知识库交叉验证
+- 标记置信度低的声明
 
-Traditional approaches trust the model output. We don't.
+**阶段2：逻辑一致性**
+- 分析推理链结构
+- 识别逻辑谬误
+- 检查内部矛盾
 
----
+**阶段3：来源追溯**
+- 提取引用声明
+- 验证引用是否真实存在
+- 标记无法验证的引用
 
-## The Core Insight
-
-**80% of AI "errors" could be caught before they reach the user.**
-
-The problem isn't that AI makes mistakes. The problem is that systems don't verify.
-
-TruthMatrix introduces a 4-stage credibility filter that catches hallucinations at the source.
-
----
-
-## What TruthMatrix Does
-
-A real-time credibility assessment pipeline:
-
-1. **Fact Verification** — Cross-reference claims against known truth
-2. **Logic Consistency** — Check if reasoning chains are valid
-3. **Source Attribution** — Verify citations and references exist
-4. **Depth Analysis** — Assess if responses are surface-level or deep
-
-```
-[AI Output] → [Fact Check] → [Logic Review] → [Source Verify] → [Depth Score] → [Verified Output]
-                ↓                 ↓                 ↓                ↓
-           Flag if false     Flag if invalid   Flag if missing   Flag if shallow
-```
+**阶段4：深度分析**
+- 测量回答深度与问题复杂度的匹配度
+- 识别用浅层回答应对深层问题
+- 评分覆盖完整性
 
 ---
 
-## The 4 Stages
+## 为什么这改变一切
 
-### Stage 1: Fact Verification
-- Identifies factual claims in output
-- Cross-references against knowledge base
-- Flags claims with low confidence scores
-
-### Stage 2: Logic Consistency
-- Analyzes reasoning chain structure
-- Identifies logical fallacies
-- Checks for internal contradictions
-
-### Stage 3: Source Attribution
-- Extracts citation claims
-- Verifies citations exist
-- Marks unverified attributions
-
-### Stage 4: Depth Analysis
-- Measures response depth vs query complexity
-- Identifies surface-level responses to deep questions
-- Scores completeness of coverage
+| 场景 | 没有TruthMatrix | 有TruthMatrix |
+|:------|:--------------:|:-------------:|
+| AI给了一个引用 | 不知道是真是假 | 立即验证 |
+| AI给了一个数字 | 盲目相信 | 交叉核查 |
+| AI回答很自信 | 可能信任了错误答案 | 逻辑审查拦截 |
+| 需要高质量输出 | 人工审核瓶颈 | 自动验证，零瓶颈 |
 
 ---
 
-## The Architecture
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    VERIFICATION LAYER                    │
-│   [Fact Engine] [Logic Engine] [Source Engine] [Depth]  │
-├─────────────────────────────────────────────────────────┤
-│                    CREDIBILITY ENGINE                    │
-│   Combines signals → generates credibility score        │
-├─────────────────────────────────────────────────────────┤
-│                    DECISION LAYER                       │
-│   [Pass] → Output  |  [Fail] → Regenerate or Flag      │
-└─────────────────────────────────────────────────────────┘
-```
-
----
-
-## The Spotlight
-
-**TruthMatrix turns "trust but verify" into automated verification.**
-
-- Instead of hoping AI is accurate, you know AI is accurate
-- Instead of manually reviewing outputs, the system reviews for you
-- Instead of catching errors after they cause damage, catch them before
-
-**Core belief**: *In AI, verification is not optional. It's the foundation.*
-
----
-
-## Quick Start Concept
+## 快速开始
 
 ```python
-# Verify any AI output
-result = ai.think("What is the capital of France?")
+# 验证任意AI输出
+result = ai.think("法国首都是什么？")
 verification = truthmatrix.verify(result)
 
 if verification.credibility_score > 0.8:
-    output(result)
+    output(result)  # 可信，输出
 else:
-    # Flag for human review or regeneration
-    flag_for_review(verification.issues)
+    flag_for_review(verification.issues)  # 标记问题，交人工审核或重生成
 ```
 
 ---
 
-## What's Inside
+## 理念
 
-```
-truthmatrix/
-├── README.md           # This file
-├── VERIFICATION.md     # Deep dive into 4-stage process
-├── ARCHITECTURE.md     # System design and integration
-├── API.md              # Integration guidelines
-└── EXAMPLES/           # Real-world use cases
-```
+**我们相信：**
+- AI幻觉是真实的，不是小问题
+- 信任应该建立在验证之上，而不是相反
+- 自动化验证是AI系统规模化的前提
 
----
-
-## The Hook (Realized)
-
-```
-Before TruthMatrix:  "I hope this is accurate."
-After TruthMatrix:   "I know this is accurate."
-```
-
-That's the power of verification-first AI.
+**TruthMatrix 适合：**
+- 不能承受AI错误输出后果的场景
+- 需要高可信度AI输出的应用
+- 想在规模化中保持质量的团队
 
 ---
 
-*Don't trust. Verify.*
+## 爆点
 
-**TruthMatrix** — *Where AI honesty is measured.*
+> "你不知道AI什么时候在撒谎。TruthMatrix让你知道。"
+
+从"希望AI是准确的"到"AI的准确性是可衡量的"。
+
+这就是验证优先的力量。
+
+---
+
+*别信任。验证。*
+
+**TruthMatrix** — *让AI诚实变得可衡量。*
